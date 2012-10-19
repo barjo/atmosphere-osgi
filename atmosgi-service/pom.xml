@@ -30,7 +30,7 @@
     <groupId>org.barjo.atmosgi</groupId>
     <artifactId>atmosgi-service</artifactId>
     <name>Atmosphere OSGi Service</name>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>${parent.version}</version>
     <packaging>bundle</packaging>
     <description></description>
 
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.atmosphere</groupId>
             <artifactId>atmosphere-runtime</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>${atmosphere.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -69,6 +69,15 @@
                             org.barjo.atmosgi
                         </Export-Package>
                     </instructions>
+                </configuration>
+            </plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.plugin.version}</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
                 </configuration>
             </plugin>
         </plugins>

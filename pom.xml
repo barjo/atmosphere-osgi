@@ -59,6 +59,7 @@
 
 	<properties>
 		<!-- Dependencies version -->
+		<atmosphere.version>1.0.2</atmosphere.version>
 		<ipojo.version>1.8.2</ipojo.version>
 		<ipojo.plugin.version>1.8.4</ipojo.plugin.version>
 		<osgi.version>4.2.0</osgi.version>
