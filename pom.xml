@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright 2012 Jonathan M. Bardin
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.barjo.atmosgi</groupId>
+	<artifactId>atmosgi-parent</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<name>Atmosphere OSGi Parent</name>
+	<url>http://github.com/barjo/atmosphere-osgi</url>
+	<packaging>pom</packaging>
+
+	<scm>
+		<connection>scm:git:git@github.com:barjo/atmosphere-osgi.git</connection>
+		<url>scm:git:git@github.com:barjo/atmosphere-osgi.git</url>
+		<developerConnection>scm:git:git@github.com:barjo/atmosphere-osgi.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<prerequisites>
+		<maven>2.2.0</maven>
+	</prerequisites>
+
+	<developers>
+		<developer>
+			<id>barjo</id>
+			<name>Jonathan Bardin</name>
+		</developer>
+	</developers>
+
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/barjo/atmosphere-osgi/issues</url>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+
+	<properties>
+		<!-- Dependencies version -->
+		<ipojo.version>1.8.2</ipojo.version>
+		<ipojo.plugin.version>1.8.4</ipojo.plugin.version>
+		<osgi.version>4.2.0</osgi.version>
+		<bundle.plugin.version>2.3.4</bundle.plugin.version>
+		<compiler.plugin.version>2.1</compiler.plugin.version>
+		<javadoc.plugin.version>2.8.1</javadoc.plugin.version>
+
+		<!-- Test dependencies version -->
+		<mockito.version>1.8.5</mockito.version>
+		<junit.version>4.8.2</junit.version>
+
+		<!-- Encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<profiles>
+
+		<!-- Profile used to build service bundles-->
+		<profile>
+			<id>service</id>
+			<modules>
+				<module>atmosgi-service</module>
+			</modules>
+		</profile>
+
+		<!-- Profile used to build component bundles-->
+		<profile>
+			<id>component</id>
+			<modules>
+				<module>atmosgi-component</module>
+			</modules>
+		</profile>
+
+		<!-- Profile used to build sample bundles-->
+		<profile>
+			<id>sample</id>
+			<modules>
+				<module>sample/chat</module>
+			</modules>
+		</profile>
+	</profiles>
+
+
+	<distributionManagement>
+		<repository>
+			<id>cloudbees-release</id>
+			<name>Cloudbees Private Repository</name>
+			<url>dav:https://repository-barjo.forge.cloudbees.com/release</url>
+		</repository>
+	</distributionManagement>
+
+	<!-- Maven Repo -->
+	<repositories>
+		<!-- OW2 Repo -->
+		<repository>
+			<id>objectweb-public</id>
+			<name>ow2 Maven Repository</name>
+			<url>http://repository.ow2.org/nexus/content/repositories/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>objectweb-old-release</id>
+			<name>ow2 Maven Repository [OLD]</name>
+			<url>http://maven.ow2.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- cloudbee repo -->
+		<repository>
+			<id>cloudbees-rose-release</id>
+			<name>Cloudbees Private Repository - RoSe - Release</name>
+			<url>https://repository-barjo.forge.cloudbees.com/release/</url>
+		</repository>
+		<repository>
+			<id>cloudbees-rose-snapshot</id>
+			<name>Cloudbees Private Repository - RoSe - Snapshot</name>
+			<url>https://repository-barjo.forge.cloudbees.com/snapshot/</url>
+		</repository>
+		<!-- Java.net repo -->
+		<repository>
+			<id>java.net-Public</id>
+			<name>Maven Java Net Snapshots and Releases</name>
+			<url>https://maven.java.net/content/groups/public</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.3.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${javadoc.plugin.version}</version>
+				<configuration>
+					<excludePackageNames>*.internal,*.internal.*</excludePackageNames>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav-jackrabbit</artifactId>
+				<version>2.2</version>
+			</extension>
+		</extensions>
+	</build>
+
+</project>
+
