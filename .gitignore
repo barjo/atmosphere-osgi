@@ -1,6 +1,28 @@
+# Java #
+########
+
 *.class
 
-# Package Files #
 *.jar
 *.war
 *.ear
+
+# Eclipse  #
+############
+
+*.project
+*.classpath
+*.settings
+.externalToolBuilders
+
+# IntelliJ #
+############
+
+*.iml
+.idea
+
+# maven #
+#########
+maven-eclipse.xml
+target
+
