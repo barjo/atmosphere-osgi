@@ -40,7 +40,7 @@ public class AtmosphereHandlerTracker implements ServiceTrackerCustomizer {
     }
 
     public Object addingService(ServiceReference serviceReference) {
-        String mapping = "/atmosphere" + (String) serviceReference.getProperty(AtmosphereService.MAPPING);
+        String mapping = (String) serviceReference.getProperty(AtmosphereService.MAPPING);
         List<AtmosphereInterceptor> interceptors = (List<AtmosphereInterceptor>) serviceReference.getProperty(AtmosphereService.INTERCEPTORS);
         Broadcaster broadcaster = (Broadcaster) serviceReference.getProperty(AtmosphereService.BROADCASTER);
         AtmosphereHandler handler =  (AtmosphereHandler) context.getService(serviceReference);

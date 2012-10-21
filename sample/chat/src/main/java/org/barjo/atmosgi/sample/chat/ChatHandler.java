@@ -21,9 +21,14 @@ import org.atmosphere.handler.OnMessage;
 import org.atmosphere.interceptor.AtmosphereResourceLifecycleInterceptor;
 import org.atmosphere.interceptor.BroadcastOnPostAtmosphereInterceptor;
 import org.barjo.atmosgi.AtmosphereService;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.osgi.service.http.HttpService;
+import org.osgi.service.http.NamespaceException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component(name = "AtmOSGi::Sample::Chat")
@@ -31,28 +36,45 @@ import java.util.List;
 public class ChatHandler extends OnMessage<String> {
 
     @ServiceProperty(name = "mapping", value = "/chat")
-    private String mapping;
+    private String mapping = "/chat";
 
     private final List<AtmosphereInterceptor> interceptors = new ArrayList<AtmosphereInterceptor>();
 
     @Requires
     private AtmosphereService atmoservice;
 
+    @Requires
+    private HttpService http;
+
     @Validate
     private void start() {
         interceptors.add(new BroadcastOnPostAtmosphereInterceptor());
         interceptors.add(new AtmosphereResourceLifecycleInterceptor());
         atmoservice.addAtmosphereHandler(mapping, this, interceptors);
+
+        try {
+            http.registerResources("/chat","/web",null);
+        } catch (NamespaceException e) {
+            e.printStackTrace();
+        }
     }
 
     @Invalidate
     private void stop() {
         atmoservice.removeAtmosphereHandler(mapping);
         interceptors.clear();
+
+        http.unregister("/chat");
     }
 
     @Override
     public void onMessage(AtmosphereResponse atmosphereResponse, String s) throws IOException {
-        atmosphereResponse.getWriter().write(s);
+        try {
+            JSONObject json = new JSONObject(s);
+            json.accumulate("time", new Date().getTime());
+            atmosphereResponse.getWriter().write(json.toString());
+        } catch (JSONException e) {
+            throw new IOException(e);
+        }
     }
 }

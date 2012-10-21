@@ -95,16 +95,17 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
         framework.removeAllInitParams();
     }
 
-    public void addAtmosphereHandler(String mapping, AtmosphereHandler handler) {
-        framework.addAtmosphereHandler(mapping, handler);
+    public void addAtmosphereHandler(String hMapping, AtmosphereHandler handler) {
+		hMapping = hMapping.startsWith("/") ? hMapping : "/" + hMapping; 
+        framework.addAtmosphereHandler(mapping + hMapping, handler);
     }
 
-    public void addAtmosphereHandler(String mapping, AtmosphereHandler h, Broadcaster broadcaster, List<AtmosphereInterceptor> l) {
-        framework.addAtmosphereHandler(mapping, h, broadcaster, l);
+    public void addAtmosphereHandler(String hMapping, AtmosphereHandler h, Broadcaster broadcaster, List<AtmosphereInterceptor> l) {
+        framework.addAtmosphereHandler(mapping + hMapping, h, broadcaster, l);
     }
 
-    public void addAtmosphereHandler(String mapping, AtmosphereHandler h, List<AtmosphereInterceptor> l) {
-        framework.addAtmosphereHandler(mapping, h, l);
+    public void addAtmosphereHandler(String hMapping, AtmosphereHandler h, List<AtmosphereInterceptor> l) {
+        framework.addAtmosphereHandler(mapping + hMapping, h, l);
     }
 
     public BroadcasterFactory getBroadcasterFactory() {
