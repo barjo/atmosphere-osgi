@@ -35,8 +35,8 @@ import java.util.List;
 @Instantiate(name = "AtmOSGi::Sample::Chat-1")
 public class ChatHandler extends OnMessage<String> {
 
-    @ServiceProperty(name = "mapping", value = "/chat")
-    private String mapping = "/chat";
+    @Property(name = "mapping", value = "/chat")
+    private String mapping;
 
     private final List<AtmosphereInterceptor> interceptors = new ArrayList<AtmosphereInterceptor>();
 
