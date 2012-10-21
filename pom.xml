@@ -98,6 +98,7 @@
 			<id>sample</id>
 			<modules>
 				<module>sample/chat</module>
+				<module>sample/bundlelistener</module>
 			</modules>
 		</profile>
 	</profiles>
