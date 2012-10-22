@@ -41,16 +41,26 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
     private String mapping;
 
     private final AtmosphereFramework framework;
+
     private final ServiceTracker tracker;
 
     public AtmosphereComponent(BundleContext context) {
+        //Instanciate the AtmosphereFramework
         framework = new AtmosphereFramework(false, false);
+
+        //Track the AtmosphereHandler available on the OSGi broker.
         tracker = new ServiceTracker(context, AtmosphereHandler.class.getName(), new AtmosphereHandlerTracker(this, context));
     }
 
+    /**
+     * Get The available HttpService which encapsulate the http server. (injected via iPOJO)
+     */
     @Requires
     private HttpService http;
 
+    /**
+     * Get a LogService is available. (injected via iPOJO)
+     */
     @Requires(optional = true)
     private LogService logger;
 
@@ -60,13 +70,13 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
         properties.put(ApplicationConfig.BROADCASTER_CACHE, "org.atmosphere.cache.HeaderBroadcasterCache");
         properties.put("org.atmosphere.cpr.AtmosphereInterceptor", "org.atmosphere.client.TrackMessageSizeInterceptor");
 
-
+        //Register the AtmosphereFramework as a Servlet.
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(AtmosphereFramework.class.getClassLoader());
         try {
             logger.log(LogService.LOG_INFO, "Atmosphere starting...");
             http.registerServlet(mapping, this, properties, null);
-            tracker.open();
+            tracker.open(); // track the AtmosphereHandler available on the OSGi broker.
         } catch (Exception e) {
             logger.log(LogService.LOG_ERROR, "Cannot create the Atmosphere Framework.", e);
             throw new RuntimeException(e);
@@ -79,38 +89,44 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
     @Invalidate
     private void stop() {
         logger.log(LogService.LOG_INFO, "Atmosphere stopping...");
-        http.unregister(mapping);
-    }
+        http.unregister(mapping); //Unregister itself from the web server.
+        //see the destroy method.
 
+    }
 
     // ----------------------------
     //   AtmosphereService impl.
     // ----------------------------
 
     public void removeAtmosphereHandler(String mapping) {
-        framework.removeAtmosphereHandler(mapping);
-    }
-
-    public void removeAllInitParams() {
-        framework.removeAllInitParams();
+        framework.removeAtmosphereHandler(constructMapping(mapping));
     }
 
     public void addAtmosphereHandler(String hMapping, AtmosphereHandler handler) {
-		hMapping = hMapping.startsWith("/") ? hMapping : "/" + hMapping; 
-        framework.addAtmosphereHandler(mapping + hMapping, handler);
+        framework.addAtmosphereHandler(constructMapping(mapping), handler);
     }
 
     public void addAtmosphereHandler(String hMapping, AtmosphereHandler h, Broadcaster broadcaster, List<AtmosphereInterceptor> l) {
-        framework.addAtmosphereHandler(mapping + hMapping, h, broadcaster, l);
+        framework.addAtmosphereHandler(constructMapping(mapping), h, broadcaster, l);
     }
 
     public void addAtmosphereHandler(String hMapping, AtmosphereHandler h, List<AtmosphereInterceptor> l) {
-        framework.addAtmosphereHandler(mapping + hMapping, h, l);
+        framework.addAtmosphereHandler(constructMapping(mapping), h, l);
     }
 
     public BroadcasterFactory getBroadcasterFactory() {
         return framework.getBroadcasterFactory();
     }
+
+    /**
+     * Construct the AtmosphereHandler mapping.
+     * @param pMapping the given mapping.
+     * @return the correct mapping.
+     */
+    private String constructMapping(String pMapping){
+        return (mapping.equals("/") ? "" : mapping) + (pMapping.startsWith("/") ? pMapping : "/" + pMapping);
+    }
+
 
     // -------------------
     //  HttpServlet
@@ -124,8 +140,8 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
 
     @Override
     public void destroy() {
-        tracker.close();
-        framework.destroy();
+        tracker.close(); //Stop to track the AtmosphereHandler.
+        framework.destroy(); //Destroy the AtmosphereFramework
         super.destroy();
     }
 

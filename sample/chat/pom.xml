@@ -30,7 +30,7 @@
     <groupId>org.barjo.atmosgi.sample</groupId>
     <artifactId>sample-chat</artifactId>
     <name>Atmosphere OSGi Sample Chat</name>
-    <version>${parent.version}</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description></description>
 
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.barjo.atmosgi</groupId>
             <artifactId>atmosgi-service</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.atmosphere</groupId>
