@@ -98,20 +98,20 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
     //   AtmosphereService impl.
     // ----------------------------
 
-    public void removeAtmosphereHandler(String mapping) {
-        framework.removeAtmosphereHandler(constructMapping(mapping));
+    public void removeAtmosphereHandler(String hMapping) {
+        framework.removeAtmosphereHandler(constructMapping(hMapping));
     }
 
     public void addAtmosphereHandler(String hMapping, AtmosphereHandler handler) {
-        framework.addAtmosphereHandler(constructMapping(mapping), handler);
+        framework.addAtmosphereHandler(constructMapping(hMapping), handler);
     }
 
     public void addAtmosphereHandler(String hMapping, AtmosphereHandler h, Broadcaster broadcaster, List<AtmosphereInterceptor> l) {
-        framework.addAtmosphereHandler(constructMapping(mapping), h, broadcaster, l);
+        framework.addAtmosphereHandler(constructMapping(hMapping), h, broadcaster, l);
     }
 
     public void addAtmosphereHandler(String hMapping, AtmosphereHandler h, List<AtmosphereInterceptor> l) {
-        framework.addAtmosphereHandler(constructMapping(mapping), h, l);
+        framework.addAtmosphereHandler(constructMapping(hMapping), h, l);
     }
 
     public BroadcasterFactory getBroadcasterFactory() {
@@ -120,11 +120,11 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
 
     /**
      * Construct the AtmosphereHandler mapping.
-     * @param pMapping the given mapping.
+     * @param hMapping the given mapping.
      * @return the correct mapping.
      */
-    private String constructMapping(String pMapping){
-        return (mapping.equals("/") ? "" : mapping) + (pMapping.startsWith("/") ? pMapping : "/" + pMapping);
+    private String constructMapping(String hMapping){
+        return (mapping.equals("/") ? "" : mapping) + (hMapping.startsWith("/") ? hMapping : "/" + hMapping);
     }
 
 
@@ -136,6 +136,11 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         framework.init(config);
+        // Grizzly 2 websocket support (working with grizzly osgi bundle >= 2.3 and < 3
+        //framework.setAsyncSupport(new Grizzly2WebSocketSupport(framework.getAtmosphereConfig()));
+
+        // Working with Felix jetty httpservice 2.3 and above
+        //framework.setAsyncSupport(new JettyAsyncSupportWithWebSocket(framework.getAtmosphereConfig()));
     }
 
     @Override

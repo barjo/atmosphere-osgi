@@ -63,5 +63,6 @@ public class AtmosphereHandlerTracker implements ServiceTrackerCustomizer {
 
     public void removedService(ServiceReference serviceReference, Object o) {
         atmo.removeAtmosphereHandler((String) o);
+        context.ungetService(serviceReference);
     }
 }
