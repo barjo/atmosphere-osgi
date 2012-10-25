@@ -30,7 +30,6 @@
     <groupId>org.barjo.atmosgi</groupId>
     <artifactId>atmosgi-service</artifactId>
     <name>Atmosphere OSGi Service</name>
-    <version>0.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description></description>
 
