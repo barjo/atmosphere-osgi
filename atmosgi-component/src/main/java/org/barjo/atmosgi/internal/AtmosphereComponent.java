@@ -67,7 +67,8 @@ public class AtmosphereComponent extends HttpServlet implements ServletContextPr
     @Validate
     private void start() {
         Hashtable<String, Object> properties = new Hashtable<String, Object>();
-        properties.put(ApplicationConfig.BROADCASTER_CACHE, "org.atmosphere.cache.HeaderBroadcasterCache");
+        //no cache TODO property for cache ?
+        //properties.put(ApplicationConfig.BROADCASTER_CACHE, "org.atmosphere.cache.HeaderBroadcasterCache");
         properties.put("org.atmosphere.cpr.AtmosphereInterceptor", "org.atmosphere.client.TrackMessageSizeInterceptor");
 
         //Register the AtmosphereFramework as a Servlet.
