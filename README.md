@@ -5,7 +5,7 @@ A simple OSGi service which encapsulate an [atmosphere](https://github.com/Atmos
 
 Info
 -------
-The current version supports properly the sse and long-polling transport with any HttpService. I plan to add the websocket support working with the grizzly HttpService (version > 2.9) and the apche Felix jetty HttpService (version > 2.2).
+The current version supports properly the sse and long-polling transport with any HttpService. I plan to add the websocket support working with the grizzly HttpService (version > 2.9) and the apache Felix jetty HttpService (version > 2.2).
 
 Usage
 -----
