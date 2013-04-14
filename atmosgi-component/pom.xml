@@ -86,7 +86,8 @@
                             org.osgi.service.log,
                             org.osgi.util.tracker,
                             javax.xml.parsers,
-                            javax.servlet*;version="[2.5,3.2)",
+                            javax.xml.bind,
+                            javax.servlet*;version="[2.5,4)",
                             com.sun*;resolution:=optional,
                             org.glassfish.grizzly*;resolution:=optional,
                             org.apache.catalina*;resolution:=optional,
@@ -95,7 +96,8 @@
                             org.jboss.servlet*;resolution:=optional,
                             eu.infomas.annotation*;resolution:=optional,
                             org.apache.coyote*;resolution:=optional,
-                            org.mortbay.util.ajax*;resolution:=optional,
+														org.mortbay.util.ajax*;resolution:=optional,
+														org.atmosphere.jboss*;resolution:=optional,
                             org.slf4j;version="[1.6,2)",
                             org.w3c.dom,
                             org.xml.sax,
@@ -106,7 +108,7 @@
                         </Private-Package>
                         <Export-Package>
                             org.barjo.atmosgi,
-                            org.atmosphere.*;version="${atmosphere.version}"
+														org.atmosphere.*;version="${atmosphere.version}"
                         </Export-Package>
                         <Include-Resource>
                             @atmosphere-runtime-${atmosphere.version}.jar
