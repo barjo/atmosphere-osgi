@@ -32,8 +32,8 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 
-@Component(name = "AtmOSGi::AtmosphereService")
-@Instantiate(name = "AtmOSGi::AtmosphereService-1")
+@Component()
+@Instantiate()
 @Provides(specifications = AtmosphereService.class)
 public class AtmosphereComponent extends HttpServlet implements ServletContextProvider, AtmosphereService {
 
