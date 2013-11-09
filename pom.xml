@@ -22,13 +22,13 @@
 	<artifactId>atmosgi-parent</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<name>Atmosphere OSGi Parent</name>
-	<url>http://github.com/barjo/atmosphere-osgi</url>
+	<url>http://github.com/sergehuber/atmosphere-osgi</url>
 	<packaging>pom</packaging>
 
 	<scm>
-		<connection>scm:git:git@github.com:barjo/atmosphere-osgi.git</connection>
-		<url>scm:git:git@github.com:barjo/atmosphere-osgi.git</url>
-		<developerConnection>scm:git:git@github.com:barjo/atmosphere-osgi.git</developerConnection>
+		<connection>scm:git:git@github.com:sergehuber/atmosphere-osgi.git</connection>
+		<url>scm:git:git@github.com:sergehuber/atmosphere-osgi.git</url>
+		<developerConnection>scm:git:git@github.com:sergehuber/atmosphere-osgi.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -41,6 +41,13 @@
 			<id>barjo</id>
 			<name>Jonathan Bardin</name>
 		</developer>
+        <developer>
+            <id>sergehuber</id>
+            <name>Serge Huber</name>
+            <email>shuber at jahia dot com</email>
+            <organization>Jahia Solutions</organization>
+            <organizationUrl>http://www.jahia.com</organizationUrl>
+        </developer>
 	</developers>
 
 	<issueManagement>
@@ -105,11 +112,23 @@
 
 
 	<distributionManagement>
+        <!--
 		<repository>
 			<id>cloudbees-release</id>
 			<name>Cloudbees Private Repository</name>
 			<url>dav:https://repository-barjo.forge.cloudbees.com/release</url>
 		</repository>
+		-->
+        <repository>
+            <id>jahia-thirdparty-releases</id>
+            <name>Jahia Third party releases</name>
+            <url>https://devtools.jahia.com/nexus/content/repositories/thirdparty-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>jahia-thirdparty-snapshots</id>
+            <name>Jahia Third party snapshots</name>
+            <url>https://devtools.jahia.com/nexus/content/repositories/thirdparty-snapshots</url>
+        </snapshotRepository>
 	</distributionManagement>
 
 	<!-- Maven Repo -->
