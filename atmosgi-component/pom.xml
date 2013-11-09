@@ -22,16 +22,14 @@
     <parent>
         <groupId>org.barjo.atmosgi</groupId>
         <artifactId>atmosgi-parent</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>0.1.0-shuber-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <!-- Description of the project -->
-    <groupId>org.barjo.atmosgi</groupId>
     <artifactId>atmosgi-component</artifactId>
     <name>Atmosphere OSGi Component</name>
     <packaging>bundle</packaging>
-    <description></description>
 
     <!-- Project dependencies -->
     <dependencies>
