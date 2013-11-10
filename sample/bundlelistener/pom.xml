@@ -30,9 +30,7 @@
     <groupId>org.barjo.atmosgi.sample</groupId>
     <artifactId>sample-bundlelistener</artifactId>
     <name>Atmosphere OSGi Sample BundleListener</name>
-    <version>0.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <description></description>
 
     <!-- Project dependencies -->
     <dependencies>

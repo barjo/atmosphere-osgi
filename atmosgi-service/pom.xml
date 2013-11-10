@@ -27,11 +27,9 @@
     </parent>
 
     <!-- Description of the project -->
-    <groupId>org.barjo.atmosgi</groupId>
     <artifactId>atmosgi-service</artifactId>
     <name>Atmosphere OSGi Service</name>
     <packaging>bundle</packaging>
-    <description></description>
 
     <!-- Project dependencies -->
     <dependencies>
