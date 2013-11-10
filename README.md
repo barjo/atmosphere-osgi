@@ -8,11 +8,26 @@ Info
 -------
 The current version supports properly the sse and long-polling transport with any HttpService. I plan to add the websocket support working with the grizzly HttpService (version > 2.9) and the apache Felix jetty HttpService (version > 2.2).
 
+Compiling
+---------
+To compile simply use the following command :
+
+```
+mvn clean install -P service,component,sample
+```
+
 Usage
 -----
 
-Install the amtmosgi-component bundle which contains the implementation.
+Install the atmosgi-component bundle which contains the implementation. You will also need to have the iPojo bundle
+deployed as it required by this bundle.
+
 Then you can use the [AtmosphereService](https://github.com/barjo/atmosphere-osgi/blob/master/atmosgi-service/src/main/java/org/barjo/atmosgi/AtmosphereService.java) or directly publish an [AtmosphereHandler](https://github.com/Atmosphere/atmosphere/wiki/Understanding-AtmosphereHandler) in the OSGi service broker (following the white-board pattern).
+
+You can also deploy the samples as they are ready to use. You can then access them using an URL such as :
+- http://localhost:8080/chat/index.html for the chat sample
+- http://localhost:8080/event/index.html for the bundlelistener sample
+- http://localhost:8080/detect/index.html for the detecttransport sample
 
 Infrastructure
 --------------
