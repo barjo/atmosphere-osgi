@@ -19,7 +19,7 @@
 
 	<groupId>org.barjo.atmosgi</groupId>
 	<artifactId>atmosgi-parent</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>Atmosphere OSGi Parent</name>
 	<url>http://github.com/barjo/atmosphere-osgi</url>
 	<packaging>pom</packaging>
@@ -28,7 +28,7 @@
 		<connection>scm:git:git@github.com:barjo/atmosphere-osgi.git</connection>
 		<url>scm:git:git@github.com:barjo/atmosphere-osgi.git</url>
 		<developerConnection>scm:git:git@github.com:barjo/atmosphere-osgi.git</developerConnection>
-		<tag>atmosgi-parent-0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<prerequisites>
