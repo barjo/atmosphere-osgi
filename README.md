@@ -2,6 +2,7 @@ atmosphere-osgi
 ===============
 
 A simple OSGi service which encapsulate an [atmosphere](https://github.com/Atmosphere/atmosphere "atmosphere") framework.
+The current release version is 0.1.0.
 
 Info
 -------
@@ -18,6 +19,20 @@ Infrastructure
 
 ### Repository 
   	
+#### Release
+
+```xml
+<repository>
+	<id>maven-barjo-repository-release</id>
+	<name>Barjo - Release</name>
+	<url>https://repository-barjo.forge.cloudbees.com/release/</url>
+	<layout>default</layout>
+</repository>
+```
+
+  	
+#### Snapshot
+
 ```xml
 <repository>
 	<id>maven-barjo-repository-snapshot</id>
@@ -26,3 +41,4 @@ Infrastructure
 	<layout>default</layout>
 </repository>
 ```
+
