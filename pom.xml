@@ -105,6 +105,7 @@
 			<modules>
 				<module>sample/chat</module>
 				<module>sample/bundlelistener</module>
+                <module>sample/detecttransport</module>
 			</modules>
 		</profile>
 	</profiles>
